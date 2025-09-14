@@ -1,0 +1,18 @@
+name: PUSH - main
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  s3-publish:
+    uses: GTotonio/StackSpot-Applications/.github/workflows/import-s3-oidc-publish.yml@main
+    with:
+      node-version: 20
+      project-type: 'mfe'
+      project-name: ${{ github.repository }}
